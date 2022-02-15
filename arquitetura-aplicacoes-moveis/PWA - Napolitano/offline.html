@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ff2945" />
+
+    <!-- Bootstrap CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./images/icons/152.png">
+
+    <title>Napolitano | Tracker de Sorvetes</title>
+  </head>
+
+  <body>
+    <!-- Modal -->
+    <div class="modal fade" id="iceCreamModal" tabindex="-1" aria-labelledby="iceCreamModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="iceCreamModalLabel">Sorvetes que já tomei</h5>
+          </div>
+          <div class="modal-body">
+            Flocos<br>
+            Maracujá<br>
+            Nata goiaba<br>
+            Ninho trufado<br>
+            Caramelo com flor de sal
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="container-fluid fixed-top header">
+        <div class="row">
+          <div class="col-12"><img src="./images/logo.png"></div> 
+        </div>
+    </header>
+
+    <main class="container content">
+      <div id="content_result"></div>
+    </main>
+
+    <footer class="container-fluid fixed-bottom footer">
+      <div class="col-12">
+        <img src="./images/offline.png">
+      </div>
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+      var ajax = new XMLHttpRequest();
+
+      ajax.open("GET", "./data.json", true);
+      ajax.send();
+
+      ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          var response = ajax.responseText;
+          var jsonData = JSON.parse(response);
+          var content = document.getElementById('content_result');
+
+          if (jsonData.length == 0) {
+              content.innerHTML = '<div class="row"><div class="col-12"><div class="alert alert-danger" role="alert">Nenhuma sorveteria cadastrada.</div></div></div>';
+          }
+          else {
+              content.innerHTML = "";
+
+              var htmlContent = "";
+
+              for (var i = 0; i < jsonData.length; i++) {
+                  htmlContent += iceCreamShopCard(jsonData[i].name, jsonData[i].url, jsonData[i].address);
+              }
+
+              content.innerHTML = htmlContent;
+          }
+        }
+      }
+
+      var iceCreamShopCard = function(name, image, address) {
+        return '<div class="ice_cream_shop_card">' +
+                 '<div class="card w-100 p-4">' +
+                   '<div class="row justify-content-center">' +
+                     '<div class="col-4">' +
+                       '<div class="ice_cream_shop_image">' +
+                         '<img src="' + image + '" alt="Logo da sorveteria" />' +
+                       '</div>' +
+                     '</div>' +
+                     '<div class="col">' +
+                       '<div class="ice_cream_shop_name">' +
+                         '<h5 class="card-title">' + name + '</h5>' +
+                       '</div>' +
+                       '<div class="ice_cream_shop_address">' +
+                         '<span><small class="text-muted">' + address + '</small></span>' +
+                       '</div>' +
+                       '<div class="d-grid col-12 pt-3">' +
+                         '<button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#iceCreamModal">Ver sorvetes</button>' +
+                       '</div>' +
+                     '</div>' +
+                   '</div>' +
+                 '</div>' +
+               '</div>';
+      }
+    </script>
+  </body>
+</html>

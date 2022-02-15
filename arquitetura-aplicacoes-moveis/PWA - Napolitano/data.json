@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Sorveteria Juarez",
+    "url": "images/sorvete_juarez-300x300.png",
+    "address": "Av. Barão de Studart, 2023 - Aldeota"
+  },
+  {
+    "name": "San Paolo",
+    "url": "images/san_paolo-300x300.png",
+    "address": "R. Ana Bilhar, 1145 - Varjota"
+  },
+  {
+    "name": "50 Sabores",
+    "url": "images/50_sabores_300x300.png",
+    "address": "Av. Treze de Maio, 805 - Térreo - Fátima"
+  },
+  {
+    "name": "Bellucci Gelateria",
+    "url": "images/bellucci_300x300.png",
+    "address": "R. Frederico Borges, 624 - Meireles"
+  },
+  {
+    "name": "Pardal Sorvetes",
+    "url": "images/pardal_300x300.png",
+    "address": "Av. Eng. Leal Lima Verde, 557 - Lagoa Sapiranga (Coité)"
+  }
+]

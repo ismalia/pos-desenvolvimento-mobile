@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ff2945" />
+
+    <!-- Bootstrap CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./images/icons/152.png">
+
+    <title>Napolitano | Tracker de Sorvetes</title>
+  </head>
+
+  <body>
+    <header class="container-fluid fixed-top header">
+      <div class="row">
+        <div class="col-12"><img src="./images/logo.png"></div>
+      </div>
+    </header>
+
+    <main class="container content">
+      <div id="content_result"></div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="iceCreamModal" tabindex="-1" aria-labelledby="iceCreamModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="iceCreamModalLabel">Sorvetes que já tomei</h5>
+            </div>
+            <div class="modal-body">
+              Flocos<br>
+              Maracujá<br>
+              Nata goiaba<br>
+              Ninho trufado<br>
+              Caramelo com flor de sal
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container-fluid fixed-bottom footer">
+      <button type="button" id="installButton" class="btn btn-primary" hidden>Instalar App</button>
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
+
+    <script>
+      let swRegistration = null;
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js').then((reg) => {
+            console.log("Service Worker registrado com sucesso.", reg);
+            swRegistration = reg;
+            initializeUI();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
